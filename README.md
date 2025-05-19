@@ -92,7 +92,9 @@ You can easily load the example workflow into ComfyUI using one of the following
 ## Outputs
 
 * **Latents**: Batch of all generated latent samples. 
-* **Overlaid Images**: Batch of all generated images with text overlays detailing parameters and metrics. 
+* **Overlaid Images**: Batch of all generated images with text overlays detailing parameters and metrics.
+  ![generations for LCM sampler and all schedulers](images/3x3.png)
+
 * **Info**: A single string containing a line-by-line summary for each test performed, including status, combo, time, and metrics. 
 
 ## Image Metrics Explained
