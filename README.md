@@ -69,7 +69,7 @@ You can easily load the example workflow into ComfyUI using one of the following
     Once downloaded, click the "Load" button in your ComfyUI interface and select this `.json` file.
 
 ## Inputs
-
+**standard KSampler parameters**
 * **model**: The main diffusion model.
 * **vae**: The VAE for decoding latents.
 * **seed**: Initial seed. This seed is used to generate a base noise pattern that is then used for each combination.
@@ -79,9 +79,13 @@ You can easily load the example workflow into ComfyUI using one of the following
 * **negative**: Negative conditioning.
 * **latent_image**: The starting latent tensor.
 * **denoise**: Denoising strength.
+    
+**Overlay parameters**
 * **font_size_ratio (optional)**: Float, ratio of image height for font size.
 * **text_color (optional)**: String, hex or named color for text.
 * **text_bg_color (optional)**: String, hex color for text background (e.g., `#000000A0`).
+    
+**Sampler and Scheduler lists**
 * **sampler_list_override (optional)**: String (multiline), specific samplers to test. If empty, it will iterate over all samplers. Delimiters are commas and new lines.
 * **scheduler_list_override (optional)**: String (multiline), specific schedulers to test. If empty, it will iterate over all Schedulers. Delimiters are commas and new lines.
 
