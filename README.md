@@ -88,9 +88,9 @@ You can easily load the example workflow into ComfyUI using one of the following
 
 ## Outputs
 
-* **Latents**: Batch of all generated latent samples. (Corresponds to `output_latents_batch` internally).
-* **Overlaid Images**: Batch of all generated images with text overlays detailing parameters and metrics. (Corresponds to `annotated_images_batch` internally). The tensor format is (Number of Images, Height, Width, Channels) as float32 with values 0-1.
-* **Info**: A single string containing a line-by-line summary for each test performed, including status, combo, time, and metrics. (Corresponds to `test_summary_text` internally).
+* **Latents**: Batch of all generated latent samples. 
+* **Overlaid Images**: Batch of all generated images with text overlays detailing parameters and metrics. 
+* **Info**: A single string containing a line-by-line summary for each test performed, including status, combo, time, and metrics. 
 
 ## Image Metrics Explained
 
