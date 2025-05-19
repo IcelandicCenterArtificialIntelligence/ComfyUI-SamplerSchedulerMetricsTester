@@ -7,7 +7,7 @@ This custom node for ComfyUI allows you to test combinations of samplers and sch
 ## Features
 
 * Iterate trough all samples and schedulers
-* Iterate through specified lists of samplers and schedulers (or all available if overrides are empty).
+* Iterate through specified lists of samplers and schedulers.
 * Overlay generated images with:
     * **Image Number:** `Image: X/Y (#Z)` format (1-based count / total, and 0-based index).
     * Sampler and Scheduler names.
@@ -20,7 +20,6 @@ This custom node for ComfyUI allows you to test combinations of samplers and sch
     * Status (OK/ERROR) and error messages if issues occur.
 * Customizable font size, text color, and text background for overlays.
 * Outputs a batch of generated latents, a batch of annotated images, and a text summary of all tests.
-* Parsing of sampler/scheduler override lists.
 
 ## Installation
 
