@@ -62,13 +62,11 @@ You can easily load the example workflow into ComfyUI using one of the following
 * **Drag & Drop Workflow PNG:**
     Click the image below to download `template_workflow.png`. This PNG image has the entire ComfyUI workflow embedded within it. Simply download the `template_workflow.png` file and then drag and drop it directly onto your ComfyUI canvas to load the workflow.
 
-    [![Example Workflow for Sampler Scheduler Metrics Tester](examples/screenshot.png)](examples/template_workflow.png)
-    *(Make sure `examples/screenshot.png` is the path to the image you want to display in the README, and `examples/template_workflow.png` is the path to the downloadable PNG with the embedded workflow).*
+    [![Example Workflow for Sampler Scheduler Metrics Tester](workflows/workflow.png)](workflows/workflow.png)    
 
 * **Load Workflow JSON:**
     Alternatively, you can download the workflow as a standard JSON file:
-    [Download example_workflow.json](examples/workflow.json)
-    *(Ensure `examples/workflow.json` is the correct path to your JSON workflow file).*
+    [Download example_workflow.json](workflows/workflow.json)   
     Once downloaded, click the "Load" button in your ComfyUI interface and select this `.json` file.
 
 ## Inputs
