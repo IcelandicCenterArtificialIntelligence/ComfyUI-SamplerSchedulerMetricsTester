@@ -1,6 +1,6 @@
 # Sampler Scheduler Metrics Tester for ComfyUI
 
-This custom node for ComfyUI allows you to test combinations of samplers and schedulers. It generates a batch of generated images(latents), as well as RGB images, each one annotated with the specific combination used, performance timing, and several image quality metrics (Laplacian Variance, Gradient Mean, FFT-based sharpness) for our internal usage, but kept as they could may be useful for others to.
+This custom node for ComfyUI allows you to test combinations of samplers and schedulers automatically. It generates a batch of generated images(latents), as well as RGB images, each one annotated with the specific combination used, performance timing, and several image quality metrics (Laplacian Variance, Gradient Mean, FFT-based sharpness) for our internal usage, but kept as they could may be useful for others to.
 ¿Have you ever wanted to have an easy way to render all combinations of samplers and schedulers with zero manual work? Then this custom node could help you. 
 ![Header image](images/front.png)
 
