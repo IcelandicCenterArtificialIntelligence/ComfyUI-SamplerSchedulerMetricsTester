@@ -2,6 +2,7 @@
 
 This custom node for ComfyUI allows you to test combinations of samplers and schedulers. It generates a batch of generated images(latents), as well as RGB images, each one annotated with the specific combination used, performance timing, and several image quality metrics (Laplacian Variance, Gradient Mean, FFT-based sharpness) for our internal usage, but kept as they could may be useful for others to.
 ¿Have you ever wanted to have an easy way to render all combinations of samplers and schedulers with zero manual work? Then this custom node could help you. 
+![Header image](images/front.png)
 
 ## Features
 
@@ -97,7 +98,10 @@ You can easily load the example workflow into ComfyUI using one of the following
 * **Laplacian Variance (LapVar):** Measures the "edginess" or sharpness. Higher values generally indicate a sharper image.
 * **Gradient Mean (GradMean):** Reflects the average strength of intensity changes (edges). Higher values can indicate more detail.
 * **FFT Sharpness Score (FFTScore):** Analyzes the image in the frequency domain. Higher frequency content often corresponds to sharper details.
+
 These metrics are for our internal usage, but perhaps they could be of help for someone else.
+
+![metrics detail image](images/detail1.png)
 
 ## AI Generation Notice
 
