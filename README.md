@@ -104,7 +104,7 @@ You can easily load the example workflow into ComfyUI using one of the following
 * **Gradient Mean (GradMean):** Reflects the average strength of intensity changes (edges). Higher values can indicate more detail.
 * **FFT Sharpness Score (FFTScore):** Analyzes the image in the frequency domain. Higher frequency content often corresponds to sharper details.
 
-These metrics are for our internal usage, but perhaps they could be of help for someone else.
+These metrics are for ICAI's internal usage, but they could be of help for someone else.
 
 ![metrics detail image](images/detail1.png)
 
