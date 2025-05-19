@@ -84,8 +84,8 @@ You can easily load the example workflow into ComfyUI using one of the following
 * **font_size_ratio (optional)**: Float, ratio of image height for font size.
 * **text_color (optional)**: String, hex or named color for text.
 * **text_bg_color (optional)**: String, hex color for text background (e.g., `#000000A0`).
-* **sampler_list_override (optional)**: String (multiline), specific samplers to test.
-* **scheduler_list_override (optional)**: String (multiline), specific schedulers to test.
+* **sampler_list_override (optional)**: String (multiline), specific samplers to test. If empty, it will iterate over all samplers. Delimiters are commas and new lines.
+* **scheduler_list_override (optional)**: String (multiline), specific schedulers to test. If empty, it will iterate over all Schedulers. Delimiters are commas and new lines.
 
 ## Outputs
 
