@@ -26,9 +26,8 @@ This custom node for ComfyUI allows you to test combinations of samplers and sch
 1.  Clone this repository or download the folder containing these files (e.g., `sampler_scheduler_metrics_tester_project`) into your `ComfyUI/custom_nodes/` directory.
     ```bash
     cd ComfyUI/custom_nodes/
-    git clone <your_repository_url_here> sampler_scheduler_metrics_tester_project # Or your chosen folder name
-    ```
-    (Ensure the folder name contains `sampler_scheduler_metrics_tester.py` and `__init__.py`).
+    git clone https://github.com/IcelandicCenterArtificialIntelligence/ComfyUI-SamplerSchedulerMetricsTester.git
+    ```    
 2.  **Dependencies:** This node uses `opencv-python` (cv2) for image metrics. If you don't have it installed in your ComfyUI's Python environment, you'll need to install it:
     ```bash
     pip install opencv-python
