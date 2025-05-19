@@ -59,7 +59,7 @@ Below is an example of how the "Sampler Scheduler Metrics Tester" node can be us
 You can easily load the example workflow into ComfyUI using one of the following methods:
 
 * **Drag & Drop Workflow PNG:**
-    Click the image below to download `template_workflow.png`. This PNG image has the entire ComfyUI workflow embedded within it. Simply download the `template_workflow.png` file and then drag and drop it directly onto your ComfyUI canvas to load the workflow.
+    Click the image below to download `workflow.png`. This PNG image has the entire ComfyUI workflow embedded within it. Simply download the `workflow.png` file and then drag and drop it directly onto your ComfyUI canvas to load the workflow.
 
     [![Example Workflow for Sampler Scheduler Metrics Tester](workflows/workflow.png)](workflows/workflow.png)    
 
