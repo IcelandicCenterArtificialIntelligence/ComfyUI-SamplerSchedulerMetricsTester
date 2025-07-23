@@ -1,0 +1,15 @@
+[project]
+name = "samplerschedulermetricstester"
+description = "This custom node for ComfyUI allows you to test combinations of samplers and schedulers. It generates a batch of generated images(latents), as well as RGB images, each one annotated with the specific combination used, performance timing, and several image quality metrics (Laplacian Variance, Gradient Mean, FFT-based sharpness) for our internal usage, but kept as they could may be useful for others to."
+version = "1.0.0"
+license = {file = "LICENSE"}
+dependencies = ["opencv-python>=4.11.0.86", "opencv_python_headless>=4.11.0.86"]
+
+[project.urls]
+Repository = "https://github.com/IcelandicCenterArtificialIntelligence/ComfyUI-SamplerSchedulerMetricsTester"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "icai"
+DisplayName = "ComfyUI-SamplerSchedulerMetricsTester"
+Icon = ""
