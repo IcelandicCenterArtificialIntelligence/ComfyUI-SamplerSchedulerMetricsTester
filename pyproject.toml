@@ -10,6 +10,6 @@ Repository = "https://github.com/IcelandicCenterArtificialIntelligence/ComfyUI-S
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "icai"
 DisplayName = "ComfyUI-SamplerSchedulerMetricsTester"
 Icon = ""
