@@ -5,6 +5,7 @@ import time
 import comfy.samplers
 import comfy.sample
 import comfy.utils
+import os
 import re
 import cv2 # For Laplacian and Gradient calculations
 
