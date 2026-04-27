@@ -192,18 +192,58 @@ class SamplerSchedulerMetricsTester:
                         current_initial_latent_gpu = initial_latent_tensor.clone().to(device)
                         actual_sampler_kdiffusion_obj = comfy.samplers.sampler_object(sampler_name)
 
-                        output_latent_samples_tensor = comfy.samplers.sample(
-                            model, current_iter_noise_gpu, positive, negative, cfg, device,
-                            actual_sampler_kdiffusion_obj, current_sigmas,
-                            model_options=model.model_options, latent_image=current_initial_latent_gpu,
-                            denoise_mask=latent_image.get("noise_mask"),
-                            callback=None, disable_pbar=True, seed=seed
-                        )
+                        try:
+                            output_latent_samples_tensor = comfy.samplers.sample(
+                                model, current_iter_noise_gpu, positive, negative, cfg, device,
+                                actual_sampler_kdiffusion_obj, current_sigmas,
+                                model_options=model.model_options, latent_image=current_initial_latent_gpu,
+                                denoise_mask=latent_image.get("noise_mask"),
+                                callback=None, disable_pbar=True, seed=seed
+                            )
+                        except ValueError as ve:
+                            if "not enough values to unpack" in str(ve) or "expected 5, got 4" in str(ve):
+                                # Retry with 5D tensors (B, T, C, H, W)
+                                print(f"[{self.__class__.__name__}] Retrying with 5D tensors due to: {ve}")
+                                noise_5d = current_iter_noise_gpu.unsqueeze(1)
+                                latent_5d = current_initial_latent_gpu.unsqueeze(1)
+                                mask_5d = latent_image.get("noise_mask")
+                                if mask_5d is not None:
+                                    mask_5d = mask_5d.unsqueeze(1)
+
+                                output_latent_samples_tensor = comfy.samplers.sample(
+                                    model, noise_5d, positive, negative, cfg, device,
+                                    actual_sampler_kdiffusion_obj, current_sigmas,
+                                    model_options=model.model_options, latent_image=latent_5d,
+                                    denoise_mask=mask_5d,
+                                    callback=None, disable_pbar=True, seed=seed
+                                )
+                            else:
+                                raise ve
+
+                        if isinstance(output_latent_samples_tensor, dict):
+                            output_latent_samples_tensor = output_latent_samples_tensor.get("samples", output_latent_samples_tensor)
                         if isinstance(output_latent_samples_tensor, tuple):
                             output_latent_samples_tensor = output_latent_samples_tensor[0]
                     
 
-                    pixel_image_tensor_bhwc = vae.decode(output_latent_samples_tensor.to(vae.device)).to(torch.float32)
+                    try:
+                        pixel_image_tensor_bhwc = vae.decode(output_latent_samples_tensor.to(vae.device)).to(torch.float32)
+                    except (IndexError, ValueError) as de:
+                        if output_latent_samples_tensor.ndim == 4:
+                            print(f"[{self.__class__.__name__}] VAE decode failed, retrying with unsqueezed latent: {de}")
+                            pixel_image_tensor_bhwc = vae.decode(output_latent_samples_tensor.unsqueeze(1).to(vae.device)).to(torch.float32)
+                        else:
+                            raise de
+
+                    # VAE output can be BHWC (4D) or BTHWC (5D)
+                    if pixel_image_tensor_bhwc.ndim > 4:
+                        print(f"[{self.__class__.__name__}] VAE output is {pixel_image_tensor_bhwc.ndim}D, squeezing to 4D")
+                        while pixel_image_tensor_bhwc.ndim > 4:
+                            if pixel_image_tensor_bhwc.shape[1] == 1:
+                                pixel_image_tensor_bhwc = pixel_image_tensor_bhwc.squeeze(1)
+                            else:
+                                pixel_image_tensor_bhwc = pixel_image_tensor_bhwc[:, 0]
+
                     # VAE output is BHWC: [Batch, Height, Width, Channels] as per logs: [1, 768, 768, 3]
 
 
@@ -307,7 +347,19 @@ class SamplerSchedulerMetricsTester:
             empty_image_out_tensor = torch.zeros((1, img_h, img_w, 3), dtype=torch.float32)
             return (empty_latent_out, empty_image_out_tensor, "No combinations processed.")
 
-        final_latents_batch_dict = {"samples": torch.cat([l['samples'] for l in collected_latents_list], dim=0)}
+        # Ensure all latents have same dimensions for concatenation
+        if collected_latents_list:
+            latents_to_cat = [l['samples'] for l in collected_latents_list]
+            max_dims = max(l.ndim for l in latents_to_cat)
+            processed_latents_to_cat = []
+            for l in latents_to_cat:
+                while l.ndim < max_dims:
+                    l = l.unsqueeze(1) # Add T dimension (B, T, C, H, W)
+                processed_latents_to_cat.append(l)
+            final_latents_batch_dict = {"samples": torch.cat(processed_latents_to_cat, dim=0)}
+        else:
+            final_latents_batch_dict = {"samples": torch.zeros_like(initial_latent_tensor)}
+
         final_images_overlaid_batch_tensor = torch.cat(collected_images_overlaid_list, dim=0) # This is (N, H, W, C)
         final_info_output_text = "\n".join(info_strings_list)
 
